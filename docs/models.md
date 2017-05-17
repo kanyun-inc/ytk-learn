@@ -102,7 +102,7 @@ Reference:
 
 **Gradient Boosting Soft Tree(GBST):**
 $$
-F_m(\mathbf{x}) =  F_{m-1}(\mathbf{x})  + \alpha f_m(\mathbf{x}) \\\ F_{m-1}(\mathbf{x})=\sum_{i=1}^{m-1}f_m(\mathbf{x}) \\\ f_m(\mathbf{x};W_g,W_s) = \sum_{k=1}^{K} g_m^k(\mathbf{x};\mathbf{w}_g^k)h_m^k(\mathbf{x};\mathbf{w}_s^k) \\\ 
+F_m(\mathbf{x}) =  F_{m-1}(\mathbf{x})  + \alpha f_m(\mathbf{x}) \\\ F_{m-1}(\mathbf{x})=\sum_{i=1}^{m-1}f_m(\mathbf{x}) \\\ f_m(\mathbf{x};W_g,W_s) = \sum_{k=1}^{K} g_m^k(\mathbf{x};\mathbf{w}_g^k)h_m^k(\mathbf{x};\mathbf{w}_s^k) \\\ (W_g,W_s)=\arg\min_{W_g^{'},W_s^{'}}L(F_{m-1}(\mathbf{x})  +  f_m(\mathbf{x};W_g^{'},W_s^{'}))
 $$
 $g_k(x)$ is gating function,  $h_k(x)$ is a basis score function, $f_m(x)$ is a soft tree model(also can be viewed as mixture model) and $F_m(x)$ is a score function constructed with additive tree model.
 
