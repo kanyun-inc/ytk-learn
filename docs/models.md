@@ -115,7 +115,7 @@ GBST is very similar with traditional gradient boosting decision tree. The follo
 
 ```Softmax Gating Function(SGF)```:
 $$
-g^k(\mathbf{x}) = \frac{e^{\mathbf{w}_k^T\mathbf{x}}}{\sum_{i=1}^{K}e^{\mathbf{w}_i^T\mathbf{x}}}
+g^k(\mathbf{x}) = \frac{e^{\mathbf{w}\_k^T\mathbf{x}}}{\sum\_{i=1}^{K}e^{\mathbf{w}_i^T\mathbf{x}}}
 $$
 
 ![sgf](pics/softmax_gating.png)
