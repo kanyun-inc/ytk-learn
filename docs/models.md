@@ -73,15 +73,15 @@ Various active function and loss function combined can generate different models
 
 
 $$
-f(\mathbf{x})=b+\sum_{i=1}^n w_ix_i + \sum_{i=1}^n\sum_{j=i+1}^n \mathbf{v}_i^T\mathbf{v}_j.x_ix_j
+f(\mathbf{x})=b+\sum_{i=1}^n w_{i}x_{i} + \sum_{i=1}^n\sum_{j=i+1}^n \mathbf{v}_i^T\mathbf{v}_{j}.x_{i}x_{j}
 $$
-A 2-way FM(degree d=2) contains linear part $b+\sum_{i=1}^n w_ix_i$  and pairwise interactions $ \sum_{i=1}^n\sum_{j=i+1}^n \mathbf{v}_i^T\mathbf{v}_j.x_ix_j$. Just like linear model, FM can be applied to regression and classification tasks. FM is a new model class that combines the advantages of SVM with factorization models and it can mimic lots of other different factorization models(MF, SVD, SVD++, FITF, FPMC ...) just by specifying the input data.
+A 2-way FM(degree d=2) contains linear part $b+\sum_{i=1}^n w_ix_i$  and pairwise interactions $ \sum_{i=1}^n\sum_{j=i+1}^n \mathbf{v}_i^T\mathbf{v}_j.x_{i}x_{j}$. Just like linear model, FM can be applied to regression and classification tasks. FM is a new model class that combines the advantages of SVM with factorization models and it can mimic lots of other different factorization models(MF, SVD, SVD++, FITF, FPMC ...) just by specifying the input data.
 
 [configuration](fm.conf.md), [demo](../demo/fm), [reference](http://www.algo.uni-konstanz.de/members/rendle/pdf/Rendle2010FM.pdf)
 
 **Field-aware Factorization Machines(FFM):**
 $$
-f(\mathbf{x})=b+\sum_{i=1}^n w_ix_i + \sum_{i=1}^n\sum_{j=i+1}^n \mathbf{w}_{i,f_j}^T\mathbf{w}_{j,f_i}.x_ix_j
+f(\mathbf{x})=b+\sum_{i=1}^n w_{i}x_{i} + \sum_{i=1}^n\sum_{j=i+1}^n \mathbf{w}_{i,f_j}^T\mathbf{w}_{j,f_i}.x_{i}x_{j}
 $$
 FFM is a variant of FM, outperforming existing models in several world-wide CTR-prediction competitions. Just like FM, FFM can also be applied to regression and classification tasks(using different active function and loss function).
 
@@ -89,7 +89,7 @@ FFM is a variant of FM, outperforming existing models in several world-wide CTR-
 
 **Gradient Boosting Decision Tree(GBDT or GBRT)**
 $$
-F_m(\mathbf{x}) =  F_{m-1}(\mathbf{x})  + \alpha f_m(\mathbf{x}) \\ F_{m-1}(\mathbf{x})=\sum_{i=1}^{m-1}f_m(\mathbf{x})\\ f_m(\mathbf{x})=\mathbf{w}_{q(\mathbf{x})}, q:R^d{\rightarrow}\{1, 2, ...,T\},\mathbf{w}{\in}R^T
+F_m(\mathbf{x}) =  F_{m-1}(\mathbf{x})  + \alpha f_m(\mathbf{x}) \newline F_{m-1}(\mathbf{x})=\sum_{i=1}^{m-1}f_m(\mathbf{x})\newline f_m(\mathbf{x})=\mathbf{w}_{q(\mathbf{x})}, q:R^d{\rightarrow}\{1, 2, ...,T\},\mathbf{w}{\in}R^T
 $$
 GBDT is a very effective machine learning method and is widely used in many machine learning tasks. This model is trained in an additive manner by greedily adding a new tree that decreases the objective(loss) function to the largest extent. 
 
@@ -104,7 +104,7 @@ Reference:
 
 **Gradient Boosting Soft Tree(GBST):**
 $$
-F_m(\mathbf{x}) =  F_{m-1}(\mathbf{x})  + \alpha f_m(\mathbf{x}) \\F_{m-1}(\mathbf{x})=\sum_{i=1}^{m-1}f_m(\mathbf{x})\\f_m(\mathbf{x};W_g,W_s) = \sum_{k=1}^{K} g_m^k(\mathbf{x};\mathbf{w}_g^k)h_m^k(\mathbf{x};\mathbf{w}_s^k)\\(W_g,W_s)=\arg\min_{W_g^{'},W_s^{'}}L(F_{m-1}(\mathbf{x})  +  f_m(\mathbf{x};W_g^{'},W_s^{'}))
+F_m(\mathbf{x}) =  F_{m-1}(\mathbf{x})  + \alpha f_m(\mathbf{x}) \newline F_{m-1}(\mathbf{x})=\sum_{i=1}^{m-1}f_m(\mathbf{x}) \newline f_m(\mathbf{x};W_g,W_s) = \sum_{k=1}^{K} g_m^k(\mathbf{x};\mathbf{w}_g^k)h_m^k(\mathbf{x};\mathbf{w}_s^k) \newline (W_g,W_s)=\arg\min_{W_g^{'},W_s^{'}}L(F_{m-1}(\mathbf{x})  +  f_m(\mathbf{x};W_g^{'},W_s^{'}))
 $$
 $g_k(x)$ is gating function,  $h_k(x)$ is a basis score function, $f_m(x)$ is a soft tree model(also can be viewed as mixture model) and $F_m(x)$ is a score function constructed with additive tree model.
 
