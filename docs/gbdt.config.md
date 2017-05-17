@@ -16,8 +16,6 @@
 
 - [Performance Guide](performance_guide.md)
 
-  ​
-
 
 ### Configuration
 
