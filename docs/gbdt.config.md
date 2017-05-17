@@ -1,7 +1,5 @@
 ### **GBDT Configuration**
 
-[TOC]
-
 ### *Helpful Links*
 
 - [Running Guide](running_guide.md)
@@ -32,7 +30,7 @@ The configuration for gbdt mainly consists of four parts: data, model, feature a
 
 Following are the detailed descriptions of gbdt configuration:
 
-```json
+```
 # filesystem scheme URI
 # local filesystem : "local", "file:///", (you can use both of them in linux and os system, but in windows local filesystem, only"local" can be used)
 # hdfs filesystem : "hdfs://host"

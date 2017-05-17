@@ -1,6 +1,6 @@
 Multiclass Linear Model
 
-```json
+```
 # filesystem scheme URI
 # local filesystem : "local", "file:///", (you can use both of them in linux and os system, but in windows local filesystem, only"local" can be used)
 # hdfs filesystem : "hdfs://host"
