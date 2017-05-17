@@ -87,7 +87,7 @@ FFM is a variant of FM, outperforming existing models in several world-wide CTR-
 
 **Gradient Boosting Decision Tree(GBDT or GBRT)**
 $$
-F_m(\mathbf{x}) =  F_{m-1}(\mathbf{x})  + \alpha f_m(\mathbf{x}) \\ F_{m-1}(\mathbf{x})=\sum_{i=1}^{m-1}f_m(\mathbf{x})\\ f_m(\mathbf{x})=\mathbf{w}_{q(\mathbf{x})}, q:R^d{\rightarrow}\{1, 2, ...,T\},\mathbf{w}{\in}R^T
+F_m(\mathbf{x}) =  F_{m-1}(\mathbf{x})  + \alpha f_m(\mathbf{x}) \\\ F_{m-1}(\mathbf{x})=\sum_{i=1}^{m-1}f_m(\mathbf{x})\\\ f_m(\mathbf{x})=\mathbf{w}_{q(\mathbf{x})}, q:R^d{\rightarrow}\{1, 2, ...,T\},\mathbf{w}{\in}R^T
 $$
 GBDT is a very effective machine learning method and is widely used in many machine learning tasks. This model is trained in an additive manner by greedily adding a new tree that decreases the objective(loss) function to the largest extent. 
 
