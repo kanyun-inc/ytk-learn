@@ -71,7 +71,7 @@ Various active function and loss function combined can generate different models
 
 **Factorization Machines(FM):**
 $$
-f(\mathbf{x})=b+\sum_{i=1}^n w_{i}x_{i} + \sum_{i=1}^n\sum_{j=i+1}^n \mathbf{v}_i^T\mathbf{v}_{j}.x_{i}x_{j}
+f(\mathbf{x})=b+\sum\_{i=1}^n {w\_i}{x\_i} + \sum\_{i=1}^n\sum\_{j=i+1}^n \mathbf{v}\_i^T\mathbf{v}\_{j}.{x\_i}{x\_j}
 $$
 A 2-way FM(degree d=2) contains linear part $b+\sum_{i=1}^n w_ix_i$  and pairwise interactions $ \sum_{i=1}^n\sum_{j=i+1}^n \mathbf{v}_i^T\mathbf{v}_j.x_{i}x_{j}$. Just like linear model, FM can be applied to regression and classification tasks. FM is a new model class that combines the advantages of SVM with factorization models and it can mimic lots of other different factorization models(MF, SVD, SVD++, FITF, FPMC ...) just by specifying the input data.
 
@@ -102,7 +102,7 @@ Reference:
 
 **Gradient Boosting Soft Tree(GBST):**
 $$
-F_m(\mathbf{x}) =  F_{m-1}(\mathbf{x})  + \alpha f_m(\mathbf{x}) \\ F_{m-1}(\mathbf{x})=\sum_{i=1}^{m-1}f_m(\mathbf{x}) \\ f_m(\mathbf{x};W_g,W_s) = \sum_{k=1}^{K} g_m^k(\mathbf{x};\mathbf{w}_g^k)h_m^k(\mathbf{x};\mathbf{w}_s^k) \newline (W_g,W_s)=\arg\min_{W_g^{'},W_s^{'}}L(F_{m-1}(\mathbf{x})  +  f_m(\mathbf{x};W_g^{'},W_s^{'}))
+F_m(\mathbf{x}) =  F_{m-1}(\mathbf{x})  + \alpha f_m(\mathbf{x}) \\\ F_{m-1}(\mathbf{x})=\sum_{i=1}^{m-1}f_m(\mathbf{x}) \\\ f_m(\mathbf{x};W_g,W_s) = \sum_{k=1}^{K} g_m^k(\mathbf{x};\mathbf{w}_g^k)h_m^k(\mathbf{x};\mathbf{w}_s^k) \newline (W_g,W_s)=\arg\min_{W_g^{'},W_s^{'}}L(F_{m-1}(\mathbf{x})  +  f_m(\mathbf{x};W_g^{'},W_s^{'}))
 $$
 $g_k(x)$ is gating function,  $h_k(x)$ is a basis score function, $f_m(x)$ is a soft tree model(also can be viewed as mixture model) and $F_m(x)$ is a score function constructed with additive tree model.
 
