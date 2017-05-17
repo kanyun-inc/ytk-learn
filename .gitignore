@@ -1,0 +1,12 @@
+target/
+*.iml
+.idea/
+gen-java/
+*.swp
+log/
+.DS_Store
+*.pid
+patch*
+*.crc
+*.model
+dependency-reduced-pom.xml
