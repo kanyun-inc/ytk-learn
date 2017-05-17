@@ -71,7 +71,7 @@ Various active function and loss function combined can generate different models
 
 **Factorization Machines(FM):**
 $$
-f(\mathbf{x})=b+\sum_{i=1}^n {w_i}{x_i} + \sum_{i=1}^n\sum_{j=i+1}^n \mathbf{v}_i^T\mathbf{v}_{j}{x_i}{x_j}
+f(\mathbf{x})=b+\sum_{i=1}^n {w_i}{x_i} + \sum_{i=1}^n\sum_{j=i+1}^n \mathbf{v}_i^T{\mathbf{v}_j}{x_i}{x_j}
 $$
 A 2-way FM(degree d=2) contains linear part $b+\sum_{i=1}^n {w_i}{x_i}$  and pairwise interactions $ \sum_{i=1}^n\sum_{j=i+1}^n \mathbf{v}_i^T\mathbf{v}_j.{x_i}{x_j}$. Just like linear model, FM can be applied to regression and classification tasks. FM is a new model class that combines the advantages of SVM with factorization models and it can mimic lots of other different factorization models(MF, SVD, SVD++, FITF, FPMC ...) just by specifying the input data.
 
@@ -79,7 +79,7 @@ A 2-way FM(degree d=2) contains linear part $b+\sum_{i=1}^n {w_i}{x_i}$  and pai
 
 **Field-aware Factorization Machines(FFM):**
 $$
-f(\mathbf{x})=b+\sum_{i=1}^n {w_i}{x_i} + \sum_{i=1}^n\sum_{j=i+1}^n \mathbf{w}_{i,f_j}^T\mathbf{w}_{j,f_i}.{x_i}{x_j}
+f(\mathbf{x})=b+\sum_{i=1}^n {w_i}{x_i} + \sum_{i=1}^n\sum_{j=i+1}^n \mathbf{w}_{i,{f_j}}^T\mathbf{w}_{j,{f_i}}{x_i}{x_j}
 $$
 FFM is a variant of FM, outperforming existing models in several world-wide CTR-prediction competitions. Just like FM, FFM can also be applied to regression and classification tasks(using different active function and loss function).
 
