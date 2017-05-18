@@ -100,3 +100,13 @@ public static OnlinePredictor createOnlinePredictor(String modelName, String con
 public static OnlinePredictor createOnlinePredictor(String modelName, Reader configReader) throws Exception;
 ```
 
+### Integration with Maven
+
+```xml
+<dependency>
+  <groupId>com.fenbi</groupId>
+  <artifactId>ytk-learn</artifactId>
+  <version>0.0.1</version>
+</dependency>
+```
+

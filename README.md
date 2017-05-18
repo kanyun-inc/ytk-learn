@@ -13,8 +13,8 @@ For more details, refer to [features](docs/features.md)
 
 ### Documents
 
-- [Quick Start](demo)
 - [Running Guide](docs/running_guide.md)
+- [Demo](demo)
 - [Model Introduction](docs/models.md)
 - [Data Format](docs/data_format.md)
 - [Evaluation Metrics](docs/evaluation_metrics.md)
@@ -24,6 +24,3 @@ For more details, refer to [features](docs/features.md)
 ### Environment Requirements
 
 To run or develop ytk-learn，just install [JRE 8](http://www.oracle.com/technetwork/java/javase/downloads/jre8-downloads-2133155.html) or [JDK 8](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html) and set [JAVA_HOME](https://docs.oracle.com/cd/E19182-01/820-7851/inst_cli_jdk_javahome_t/).
-
-### 
-
