@@ -12,14 +12,12 @@ We support two algorithms for tree learning: exact greedy and histogram approxim
 
   - sample_by_quantile: generates feature bins according to percentiles of feature distribution based on the algorithm in [2] and extends to weighted version(recommended).
 
-  - Each of the three methods below samples out feature values in each thread, accumulates values from all threads in all slaves by **allreduce**, removes repeat values and constructs feature bins.
+  - Each of the three methods below samples out feature values in each thread, accumulates values from all threads in all slaves by **allreduce**, removes repeat values and constructs feature bins.
     - sample_by_cnt: samples out specified count of feature values in each thread of each slave.
     - sample_by_rate: samples out feature values by a specified rate in each thread of each slave.
     - sample_by_precision: samples out feature values by a specified precision in each thread of each slave.
 
   - no_sample: uses all feature values to construct feature bins. It means each feature bin contains only one feature value in training set. So there is no feature approximation. If the approximation configurations of all features are set to "no_sample",  then the training result is similar to exact greedy algorithm.
-
-    ​
 
 
 ### Tree Growing Policy
@@ -82,7 +80,6 @@ The communication in multi-thread and multi-process(distributed environments) tr
   | supporting filesystem   | local file system, hdfs file system, user defined file system. | local file system, hdfs file system and user defined file system. |
   | running environment     | local machine                            | local machine and distributed cluster(common cluster, spark, hadoop) |
 
-  ​
 
 ### Supported Objective Functions
 
@@ -106,7 +103,7 @@ The objective functions listed above can be set via ```optimization.loss_functio
 
 - MAE
 - RMSE
-- Confusion Matrix (contains precision, recall and accuracy)
+- Confusion Matrix (contains precision, recall and accuracy)
 - AUC
 
 Loss is calculated in default, see [evaluation metrics](evaluation_metrics.md) for details.
@@ -136,8 +133,6 @@ Loss is calculated in default, see [evaluation metrics](evaluation_metrics.md) f
 - Supporting random forest
 
 - [Common features](features.md)
-
-  ​
 
 
 ### Reference

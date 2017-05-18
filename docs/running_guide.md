@@ -88,7 +88,7 @@ After starting up training,  you can use ```tail -f log/master.log``` to watch p
 
 - ```tail -f log/master.log | grep "train loss"```: check train loss
 - ```tail -f log/master.log | grep "test loss"```: check test loss
-- ```"tail -f log/master.log | grep "auc\|rmse\|confusion_matrix\|mae"```: check metrics.
+- ```tail -f log/master.log | grep "auc\|rmse\|confusion_matrix\|mae"```: check metrics.
 
 ### Demo
 

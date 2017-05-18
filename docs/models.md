@@ -2,14 +2,14 @@
 
 - Classification
   - Binary classification
-    - sigmoid(negtive log bernoulli likelihood)
+    - sigmoid(negative log bernoulli likelihood)
     - sigmoid_cross_entropy
     - hinge(svm)
     - l2_hinge
     - smooth_hinge
     - exponential
   - Multi-class classification
-    - softmax(negtive multinoulli likelihood)
+    - softmax(negative multinoulli likelihood)
     - softmax_cross_entropy
     - hsoftmax(hierarchical softmax)
     - hsoftmax_cross_entropy
