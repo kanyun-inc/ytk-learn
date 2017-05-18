@@ -14,7 +14,7 @@ sh tool/package.sh
 - ```log```: when you run some scripts, corresponding logs will be generated in this directory. 
 - ```demo```: several demos of each model in this directory.
 
-[ytk-learn.zip](https://pan.baidu.com/s/1i5BSROD) is avaliable for downloading. 
+[ytk-learn.zip](https://pan.baidu.com/s/1bpb7ssv) is avaliable for downloading. 
 
 ### Training Platform and Corresponding Running Scripts
 
