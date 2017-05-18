@@ -1,4 +1,4 @@
-**Ytk-learn** is a distributed machine learning library which implements most of popular machine learning algorithms. It runs on single, multiple machines and major distributed environments(hadoop, spark)，and supports major operating systems(Linux, Windows, Mac OS)，the communication of distributed environments is implemented based on ytk-mp4j which is pure java, mpi-like message passing interface.
+**Ytk-learn** is a distributed machine learning library which implements most of popular machine learning algorithms. It runs on single, multiple machines and major distributed environments(hadoop, spark)，and supports major operating systems(Linux, Windows, Mac OS)，the communication of distributed environments is implemented based on [ytk-mp4j](https://github.com/yuantiku/ytk-mp4j) which is pure java, mpi-like message passing interface.
 
 ### Features
 
