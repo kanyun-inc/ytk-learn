@@ -126,7 +126,7 @@ g^k(\mathbf{x})=\prod_{j=1}^L \sigma(2\delta(leftchild) - 1)
 $$
 ![hsgf](pics/hsoftmax_gating.png)
 
-$L$ is the length of path from root to leaf, $\delta$ is a indicator function and $\delta$ is a simoid function.
+$L$ is the length of path from root to leaf, $\delta$ is an indicator function and $\delta$ is a simoid function.
 
 HSGF has stronger non-linear ability than SGF. Theoretically, HSGF can divide any complex space. GBST with SGF is tree stump with $K$ leaves.  HSGF is a complete binary tree, with no requirement of full binary tree. We will provide common binary tree in the future.
 
