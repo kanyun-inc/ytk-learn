@@ -55,7 +55,7 @@ Various active function and loss function combined can generate different models
 6. ...
 
 
-[configuration](linear.conf.md), [demo](../demo/linear), [reference](https://en.wikipedia.org/wiki/Linear_model).
+[configuration](linear.config.md), [demo](../demo/linear), [reference](https://en.wikipedia.org/wiki/Linear_model).
 
 **Multiclass Linear Model:**
 $$
@@ -67,7 +67,7 @@ Various active function and loss function combined can generate different models
 2. Multiclass Hingle:  multiclass linear model  + Identity active function + hinge loss
 3. ...
 
-[configuration](multiclass_linear.conf.md), [demo](../demo/multiclass_linear), [reference](http://vision.stanford.edu/teaching/cs231n-demos/linear-classify/)
+[configuration](multiclass_linear.config.md), [demo](../demo/multiclass_linear), [reference](http://vision.stanford.edu/teaching/cs231n-demos/linear-classify/)
 
 **Factorization Machines(FM):**
 $$
@@ -75,7 +75,7 @@ f(\mathbf{x})=b+\sum_{i=1}^n {w_i}{x_i} + \sum_{i=1}^n\sum_{j=i+1}^n \mathbf{v}\
 $$
 A 2-way FM(degree d=2) contains linear part $b+\sum_{i=1}^n {w_i}{x_i}$  and pairwise interactions $ \sum_{i=1}^n\sum_{j=i+1}^n \mathbf{v}\_i^T\mathbf{v}\_j.{x_i}{x_j}$. Just like linear model, FM can be applied to regression and classification tasks. FM is a new model class that combines the advantages of SVM with factorization models and it can mimic lots of other different factorization models(MF, SVD, SVD++, FITF, FPMC ...) just by specifying the input data.
 
-[configuration](fm.conf.md), [demo](../demo/fm), [reference](http://www.algo.uni-konstanz.de/members/rendle/pdf/Rendle2010FM.pdf)
+[configuration](fm.config.md), [demo](../demo/fm), [reference](http://www.algo.uni-konstanz.de/members/rendle/pdf/Rendle2010FM.pdf)
 
 **Field-aware Factorization Machines(FFM):**
 $$
@@ -83,7 +83,7 @@ f(\mathbf{x})=b+\sum_{i=1}^n {w_i}{x_i} + \sum_{i=1}^n\sum_{j=i+1}^n \mathbf{w}\
 $$
 FFM is a variant of FM, outperforming existing models in several world-wide CTR-prediction competitions. Just like FM, FFM can also be applied to regression and classification tasks(using different active function and loss function).
 
-[configuration](ffm.conf.md), [demo](../demo/ffm), [reference](https://www.csie.ntu.edu.tw/~r01922136/slides/ffm.pdf)
+[configuration](ffm.config.md), [demo](../demo/ffm), [reference](https://www.csie.ntu.edu.tw/~r01922136/slides/ffm.pdf)
 
 **Gradient Boosting Decision Tree(GBDT or GBRT)**
 $$
@@ -93,7 +93,7 @@ GBDT is a very effective machine learning method and is widely used in many mach
 
 In the above formulations, $f_m(\mathbf{x})$ is the tree and $q(\mathbf{x})$ represents the structure of the tree. It is a leaf index mapping function that maps an instance to the corresponding leaf index.  $\mathbf{w}$ is a vector of leaf values and $T$ is the number of leaves in the tree.  So $f_m(\mathbf{x})$  maps an instance to its corresponding tree leaf value.
 
-[configuration](gbdt.conf.md), [demo](../demo/gbdt)
+[configuration](gbdt.config.md), [demo](../demo/gbdt)
 
 Reference:
 
@@ -148,10 +148,10 @@ $$
 
 Different gating functions combined with different basis score functions can create different GBST models. Ytk-learn supports eight GBST models(2(gating function) * 2(score function) * 2(gradient_boosting or random_forest)):
 
-1. ```gbmlr```(SGF + LSF), [configuration](gbmlr.conf.md), [demo](../demo/gbmlr)
-2. ```gbsdt```(SGF + SVSF), [configuration](gbmlr.conf.md), [demo](../demo/gbsdt)
-3. ```gbhmlr```(HSGF + LSF), [configuration](gbmlr.conf.md), [demo](../demo/gbhmlr)
-4. ```gbhsdt```(HSGF + SVSF), [configuration](gbmlr.conf.md), [demo](../demo/gbhsdt)
+1. ```gbmlr```(SGF + LSF), [configuration](gbmlr.config.md), [demo](../demo/gbmlr)
+2. ```gbsdt```(SGF + SVSF), [configuration](gbmlr.config.md), [demo](../demo/gbsdt)
+3. ```gbhmlr```(HSGF + LSF), [configuration](gbmlr.config.md), [demo](../demo/gbhmlr)
+4. ```gbhsdt```(HSGF + SVSF), [configuration](gbmlr.config.md), [demo](../demo/gbhsdt)
 
 GBST can also be applied to regression and classification tasks with different active functions and loss functions.
 
