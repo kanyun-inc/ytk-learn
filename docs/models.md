@@ -122,7 +122,7 @@ $$
 
 ```Hierarchical Softmax Gating Function(HSGF)```:
 $$
-g^k(\mathbf{x})=\prod_{j=1}^L \sigma(2\delta(left\_child) - 1)
+g^k(\mathbf{x})=\prod_{j=1}^L \sigma(2\delta(leftchild) - 1)
 $$
 ![hsgf](pics/hsoftmax_gating.png)
 
