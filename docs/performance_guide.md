@@ -5,7 +5,7 @@
 - If your feature dim is huge, training will procede very slowly. You can use feature hash to reduce dim at a fraction of cost via setting "feature.feature_hash" except for gbdt. 
 - If the classification task has serious imbalanced dataset，you can set "data.y_sampling" in model configuration to reduce the number of samples. For instance, CTR prediction scene usually has large proportion of negative samples，“y_sampling : [0@0.1]” means that it reserves 10% of negative samples randomly, and those reserved negative samples enlarge 10x weight as compensation.
 - Complex models(fm, ffm, gbst) have more parameters to optimize,  so before training complex models, you can use linear model with l1 regularization to perform feature selection.
-- In GBDT, If  the number features is large, use feature-parallel training.  If the number of data is large, use data-parallel training. In mose cases, when you use data-parallel training, the smaller the number of feature bins is, the faster the training process will be, meanwhile, the model will be less accurate.
+- In GBDT, If  the number features is large, use feature-parallel training.  If the number of data is large, use data-parallel training. In mose cases, when you use data-parallel training, the smaller the number of feature bins is, the faster the training process will be, meanwhile, the model will be less accurate.
 
 ### Model Accuracy
 
@@ -21,7 +21,7 @@ Use "tail -f log/master.log | grep "train loss" and "tail -f log/master.log | gr
 - early stopping
   - decease "optimisation.line_search.lbfgs.convergence.max_iter" value.
   - increase "optimisation.line_search.lbfgs.convergence.eps" value.
-- increase regularizations: increase "loss.regularization.l1/l2" value.
+- increase regularizations: increase "loss.regularization.l1/l2" value.
 - decease model complexity:
   - fm/ffm: reduce latent factor size("k").
   - gbst
