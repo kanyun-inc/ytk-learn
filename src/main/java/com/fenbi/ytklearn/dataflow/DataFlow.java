@@ -25,6 +25,7 @@ package com.fenbi.ytklearn.dataflow;
 
 import com.fenbi.mp4j.comm.ThreadCommSlave;
 import com.fenbi.mp4j.exception.Mp4jException;
+import com.fenbi.ytklearn.exception.YtkLearnException;
 import com.fenbi.ytklearn.fs.IFileSystem;
 import com.fenbi.ytklearn.loss.ILossFunction;
 import com.fenbi.ytklearn.param.DataParams;
@@ -126,7 +127,7 @@ public abstract class DataFlow {
     protected volatile boolean replacedIdx = false;
     protected Random rand = new Random();
 
-    private static BlockingQueue<String> readQueues[];
+    private static final BlockingQueue<String> readQueues[];
     private static volatile boolean readFinished = false;
 
     protected IFeatureMap featureMap;
@@ -135,6 +136,15 @@ public abstract class DataFlow {
     protected Map<Integer, CoreData.TransformNode> transformNodeMap = new HashMap<>();
     protected volatile boolean trainReplacedFeatureTransform = false;
     protected volatile boolean testReplacedFeatureTransform = false;
+
+    public static int MAX_THREAD_NUM = 2000;
+
+    static {
+        readQueues = new LinkedBlockingDeque[MAX_THREAD_NUM];
+        for (int t = 0; t < MAX_THREAD_NUM; t++) {
+            readQueues[t] = new LinkedBlockingDeque<>();
+        }
+    }
 
     public static class ThreadIterator implements Iterator<String> {
         private final int threadId;
@@ -186,11 +196,10 @@ public abstract class DataFlow {
 
         this.threadTrainCoreDatas = new CoreData[threadNum];
         this.threadTestCoreDatas = new CoreData[threadNum];
-        this.readQueues = new LinkedBlockingDeque[threadNum];
-        for (int t = 0; t < threadNum; t++) {
-            readQueues[t] = new LinkedBlockingDeque<>();
-        }
 
+        if (threadNum > MAX_THREAD_NUM) {
+            throw new YtkLearnException("thread number=" + threadNum + " is too large! please reset!");
+        }
     }
 
     public void init() throws Exception {
