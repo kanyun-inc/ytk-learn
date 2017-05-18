@@ -4,7 +4,7 @@
 
 - [Running Guide](running_guide.md)
 
-- [Demo](demo/gbdt)
+- [Demo](../demo/gbdt)
 
 - [Features](gbdt_features.md)
 
