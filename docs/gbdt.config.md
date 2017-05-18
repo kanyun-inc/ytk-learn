@@ -295,7 +295,7 @@ We also provide several feature bin generating methods:
 
 - **sample_by_quantile**: generates feature bins according to percentiles of feature distribution based on the algorithm in [1] and extends to weighted version(we recommend this method). The results of each training may vary because of the unstable algorithm of generating percentiles(feature bins).
 
-- The three methods below can't control total feature bins exactly. Each of them samples out feature values in each thread, accumulates values from all threads in all slaves, removes repeat values and constructs feature bins(those feature values are boundaries of feature bins).
+- The three methods below can't control total feature bins exactly. Each of them samples out feature values in each thread, accumulates values from all threads in all slaves, removes repeat values and constructs feature bins(those feature values are boundaries of feature bins).
 
   - **sample_by_cnt**: samples out specified count of feature values in each thread of each slave.
 
@@ -310,9 +310,6 @@ We also provide several feature bin generating methods:
     e.g., after performing normalizaion the feature value becomes 0.453312223. If  you set "dot_precision=4", then the reserved value is 0.4533.
 
 - **no_sample**: uses all feature values to construct feature bins. It means each feature bin contains only one feature value in training set. So there is no feature approximation. If the approximation configurations of all features are set to "no_sample",  then the training result is similar to exact greedy algorithm. It may be more accurate but the training process is slower. You'd better config important features or features with a few distinct values to "no sample".
-
-  ​
-
 
 
 ### Reference
