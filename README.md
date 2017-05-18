@@ -9,7 +9,7 @@
 - Provides user friendly codes for online prediction.
 - Without complex installation, only needs Java SE Runtime Environment 8 installation.
 
-For more details, refer to [features](features.md)
+For more details, refer to [features](docs/features.md)
 
 ### Documents
 
