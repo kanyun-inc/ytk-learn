@@ -34,7 +34,7 @@ public interface ITreePredictor {
     /**
      * If the tree model is GBDT, leaf indexes are returned, length = tree number
      * else if the tree model is GBST, gating values(soft leaf indexes) are returned, length = tree number * mixture number
-     * @param features
+     * @param features features map(feature name:feature value)
      * @return leaf indexes or gating values, these values usually be used as features for other models.
      */
     double[] predictLeaf(Map<String, Float> features);

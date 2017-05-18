@@ -26,7 +26,7 @@ package com.fenbi.ytklearn.feature.gbdt.approximate.normlization;
 import com.fenbi.ytklearn.utils.CheckUtils;
 
 /**
- * value--> value + min(all values), then log(1+value)
+ * convert value to value + min(all values), then log(1+value)
  * @author wufan
  * @author xialong
  */

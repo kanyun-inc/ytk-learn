@@ -130,7 +130,7 @@ public class LinearOnlinePredictor extends ContinuousOnlinePredictor<Tuple<Float
     }
 
     /**
-     * Thompson sampling prediction for E&E(Exploitation and Exploration).
+     * Thompson sampling prediction for Exploitation and Exploration.
      * using Laplace approximate, Distribution of parameters posterior are approximate to diagonal gaussian distribution,
      * details see "An Empirical Evaluation of Thompson Sampling"
      * @param features features map, key:featureName, value:featureValue

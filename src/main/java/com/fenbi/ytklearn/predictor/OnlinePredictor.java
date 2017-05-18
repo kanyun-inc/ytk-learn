@@ -125,7 +125,7 @@ public abstract class OnlinePredictor {
      * @param other if model is tree model, and uses sample dependent score,
      *              other is sample dependent scores(Float[] type),
      *              if not, other parameter will be omit(set null)
-     * @return
+     * @return scores
      */
     public double[] scores(Map<String, Float> features, Object other) {
         return new double[] {score(features, other)};
@@ -165,7 +165,7 @@ public abstract class OnlinePredictor {
      * @param features features map, key:featureName, value:featureValue
      * @param labels labels
      * @param other see {@link #scores(Map, Object)}
-     * @return
+     * @return loss
      */
     public double loss(Map<String, Float> features, double[] labels, Object other) {
         return Double.MAX_VALUE;

@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+mv pom.xml pom.xml.bak
+cp pom.xml.shade pom.xml
 mvn clean
 mvn package
 mkdir target/ytk-learn
@@ -12,3 +14,5 @@ cp -r docs target/ytk-learn
 cp target/ytk-learn.jar  target/ytk-learn/lib
 cd target
 zip -r ytk-learn.zip ytk-learn
+cd ..
+mv pom.xml.bak pom.xml

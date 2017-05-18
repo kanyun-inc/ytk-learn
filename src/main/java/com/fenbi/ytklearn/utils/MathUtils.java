@@ -30,8 +30,8 @@ package com.fenbi.ytklearn.utils;
 public class MathUtils {
     /**
      * logistic
-     * @param z
-     * @return
+     * @param z score
+     * @return probability
      */
     public static double logistic(double z) {
         if (z >= 0.0) {

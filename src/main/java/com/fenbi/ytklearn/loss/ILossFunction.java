@@ -32,7 +32,7 @@ import java.util.Map;
  *       <li>{@link #predict(double)} for predicting</li>
  *       <li>{@link #firstDerivative(double, double)} for calculating first derivative of score function for numeric optimization</li>
  *       <li>{@link #secondDerivative(double, double)} for calculating second derivative of score function for numeric optimization </li>
- *   <ul/>
+ *   </ul>
  * <p> The same {@code loss function} can have different score function(or different model,
  *     e.g. linear model, factorization machine model, ...
  *
@@ -87,7 +87,7 @@ public interface ILossFunction {
      *        The score value of score function
      * @param label
      *        The label of sample
-     * @return
+     * @return loss
      */
     default public double loss(double[] score, double[] label) {
         return -1;
@@ -115,7 +115,7 @@ public interface ILossFunction {
      *        The score value of score function
      * @param label
      *        The label of sample
-     * @return
+     * @return first derivative
      */
     public double firstDerivative(double score, double label);
 
@@ -125,7 +125,7 @@ public interface ILossFunction {
      *        The score value of score function
      * @param label
      *        The label of sample
-     * @return
+     * @return second derivative
      */
     public double secondDerivative(double score, double label);
 
