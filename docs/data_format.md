@@ -52,7 +52,7 @@ then the data format becomes
    1###0###height:2.0,weight:50.0,size:80
    ```
 
-   There are two samples, the first '10' in the first line is the sample weight, the '1' in ``10###1###`` is the sample label. Similarly, the second sample has weight '1' and label '0'. In binary classification, label '1' stands for positive sample while '0' stands for negative sample. You can also provide probability values in [0,1] as label, indicating the probability that the sample is positive, e.g.
+   There are two samples, the first '10' in the first line is the sample weight, the '1' in ``10###1###``is the sample label. Similarly, the second sample has weight '1' and label '0'. In binary classification, label '1' stands for positive sample while '0' stands for negative sample. You can also provide probability values in [0,1] as label, indicating the probability that the sample is positive, e.g.
 
    ```
    10###0.9###height:1.6,weight:56.0,size:102
