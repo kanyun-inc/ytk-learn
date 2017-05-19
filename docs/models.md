@@ -150,9 +150,9 @@ $$
 Different gating functions combined with different basis score functions can create different GBST models. Ytk-learn supports eight GBST models(2(gating function) * 2(score function) * 2(gradient_boosting or random_forest)):
 
 1. ```gbmlr```(SGF + LSF), [configuration](gbmlr.config.md), [demo](../demo/gbmlr)
-2. ```gbsdt```(SGF + SVSF), [configuration](gbmlr.config.md), [demo](../demo/gbsdt)
+2. ```gbsdt```(SGF + SVSF), [configuration](gbsdt.config.md), [demo](../demo/gbsdt)
 3. ```gbhmlr```(HSGF + LSF), [configuration](gbmlr.config.md), [demo](../demo/gbhmlr)
-4. ```gbhsdt```(HSGF + SVSF), [configuration](gbmlr.config.md), [demo](../demo/gbhsdt)
+4. ```gbhsdt```(HSGF + SVSF), [configuration](gbsdt.config.md), [demo](../demo/gbhsdt)
 
 GBST can also be applied to regression and classification tasks with different active functions and loss functions.
 
