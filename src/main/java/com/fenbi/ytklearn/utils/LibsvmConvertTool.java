@@ -69,7 +69,6 @@ public class LibsvmConvertTool {
         String inputPath = args[6];
         String outputPath = args[7];
 
-        Map<Integer, String> kLabelStrMap = new HashMap<>();
         BufferedReader reader = null;
         PrintWriter writer = null;
         int cnt = 0;
@@ -77,17 +76,11 @@ public class LibsvmConvertTool {
 
         int k = 2;
         Map<String, Integer> kLabel2IndexMap = new HashMap<>();
-        Map<String, String> kLabel2LabelMap = new HashMap<>();
         if (mode.contains("classification")) {
             String []labelinfo = mode.split("@")[1].trim().split(",");
             k = labelinfo.length;
             for (int i = 0; i < k; i++) {
                 kLabel2IndexMap.put(labelinfo[i], i);
-                if (mode.startsWith("binary")) {
-                    kLabel2LabelMap.put(labelinfo[i], i + "");
-                } else {
-                    kLabel2LabelMap.put(labelinfo[i], createKLabelStr(k, i, y_delim));
-                }
             }
         }
 
@@ -102,7 +95,7 @@ public class LibsvmConvertTool {
             reader = new BufferedReader(fs.getReader(inputPath));
             writer = new PrintWriter(fs.getWriter(outputPath));
 
-
+            LOG.info("libsvm format data path:" + inputPath);
             while((line = reader.readLine()) != null) {
                 StringBuilder sb = new StringBuilder();
                 String []info = line.trim().split("\\s+");
@@ -126,7 +119,6 @@ public class LibsvmConvertTool {
 
                         kcnt[label] ++;
                     } else if (mode.startsWith("multi_classification")) {
-                        //int label = Integer.parseInt(info[0]);
                         Integer label = kLabel2IndexMap.get(info[0]);
                         if (label == null) {
                             throw new Exception("unknown label:" + info[0]);
@@ -135,12 +127,7 @@ public class LibsvmConvertTool {
                         if (label < 0 || label >= k) {
                             throw new Exception("error libsvm format for mode:" + mode + " - " + line);
                         }
-                        String kStr = kLabelStrMap.get(label);
-                        if (kStr == null) {
-                            kStr = createKLabelStr(k, label, y_delim);
-                            kLabelStrMap.put(label, kStr);
-                        }
-                        sb.append(kStr).append(x_delim);
+                        sb.append(label).append(x_delim);
 
                         kcnt[label] ++;
                     } else if (mode.startsWith("regression")) {
@@ -162,26 +149,20 @@ public class LibsvmConvertTool {
                     }
                 }
 
-//                if (cnt < 10) {
-//                    LOG.info("libsvm format:" + line);
-//                    LOG.info("ytk-learn format:" + sb.toString());
-//                }
-
                 writer.println(sb.toString());
 
                 cnt++;
             }
 
             LOG.info("convert finished! convert count:" + cnt);
-            if (mode.contains("classification")) {
-                LOG.info("classification label stat:" + Arrays.toString(kcnt));
-            }
 
             if (mode.contains("classification")) {
                 for (Map.Entry<String, Integer> entry : kLabel2IndexMap.entrySet()) {
-                    LOG.info("libsvm classification label:" + entry.getKey() + " ----> ytklearn classification label:" + kLabel2LabelMap.get(entry.getKey()));
+                    LOG.info("libsvm classification label:" + entry.getKey() + " ----> ytklearn classification label:" + entry.getValue() + ", count:" + kcnt[entry.getValue()]);
                 }
             }
+
+            LOG.info("ytk-learn format data path:" + outputPath);
 
 
         } catch (Exception e) {

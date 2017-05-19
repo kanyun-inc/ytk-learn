@@ -379,21 +379,36 @@ public class GBDTOnlinePredictor extends OnlinePredictor implements ITreePredict
 
                         if (hasLabel) {
                             if (labels == null) {
-                                labels = new double[linfo.length];
-                            }
-                            for (int i = 0; i < linfo.length; i++) {
-                                labels[i] = Float.parseFloat(linfo[i]);
+                                labels = new double[numTreeInGroup];
                             }
 
-                            if (numTreeInGroup == 1) {
-                                loss += weight * loss(fmap, labels[0], sampleDepBasePrediction? otherinfo[0]: null);
-                            } else {
+                            if (numTreeInGroup > 1) {
+                                if (linfo.length == 1) {
+                                    for (int i = 0; i < numTreeInGroup; i++) {
+                                        labels[i] = 0;
+                                    }
+                                    int clazz = Integer.parseInt(linfo[0]);
+                                    if (clazz >= numTreeInGroup) {
+                                        throw new YtkLearnException("multi classification label must in range [0,K-1]!\n" + line);
+                                    }
+                                    labels[clazz] = 1.0f;
+                                } else if (linfo.length == numTreeInGroup){
+                                    for (int i = 0; i < numTreeInGroup; i++) {
+                                        labels[i] = Float.parseFloat(linfo[i]);
+                                    }
+                                } else {
+                                    throw new YtkLearnException("label format error:" + line);
+                                }
+
                                 loss += weight * loss(fmap, labels, otherinfo);
+                            } else {
+                                labels[0] = Float.parseFloat(linfo[0]);
+                                loss += weight * loss(fmap, labels[0], sampleDepBasePrediction? otherinfo[0]: null);
                             }
 
                             if (needEval) {
                                 if (testData == null) {
-                                    testData = new PredictCoreData(null, linfo.length);
+                                    testData = new PredictCoreData(null, numTreeInGroup);
                                 }
                                 testData.addPredict(predicts, labels, weight);
                             }

@@ -217,6 +217,8 @@ public abstract class ContinuousOnlinePredictor<T> extends OnlinePredictor {
         int realcnt = 0;
         double weightCnt = 0;
         int errorNum = 0;
+        int K = modelName.equalsIgnoreCase("multiclass_linear") ? config.getInt("k") : -1;
+
         for (String path : paths) {
             String predictPath = path + resultFileSuffix;
             BufferedReader reader = new BufferedReader(fs.getReader(path));
@@ -253,16 +255,34 @@ public abstract class ContinuousOnlinePredictor<T> extends OnlinePredictor {
                             double []predicts = predicts(fmap, null);  // todo: judge sampleDepdtBaseScore
                             if (hasLabel) {
                                 if (labels == null) {
-                                    labels = new double[linfo.length];
+                                    labels = new double[K];
                                 }
-                                for (int i = 0; i < linfo.length; i++) {
-                                    labels[i] = Float.parseFloat(linfo[i]);
+
+                                if (linfo.length != K && linfo.length != 1) {
+                                    throw new Exception("label num must = " + K + ", or = 1, line:" + line);
+                                }
+
+                                if (linfo.length == 1) {
+                                    for (int i = 0; i < K; i++) {
+                                        labels[i] = 0;
+                                    }
+                                    int clazz = Integer.parseInt(linfo[0]);
+                                    if (clazz >= K) {
+                                        throw new YtkLearnException("multi classification label must in range [0,K-1]!\n" + line);
+                                    }
+                                    labels[clazz] = 1.0f;
+                                } else if (linfo.length == K){
+                                    for (int i = 0; i < K; i++) {
+                                        labels[i] = Float.parseFloat(linfo[i]);
+                                    }
+                                } else {
+                                    throw new YtkLearnException("multi classification label error:" + line);
                                 }
 
                                 loss += weight * loss(fmap, labels, null);
                                 if (needEval) {
                                     if (testData == null) {
-                                        testData = new PredictCoreData(null, linfo.length);
+                                        testData = new PredictCoreData(null, K);
                                     }
                                     testData.addPredict(predicts, labels, weight);
                                 }

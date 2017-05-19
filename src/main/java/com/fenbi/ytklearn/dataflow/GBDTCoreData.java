@@ -26,6 +26,7 @@ package com.fenbi.ytklearn.dataflow;
 import com.fenbi.mp4j.comm.ThreadCommSlave;
 import com.fenbi.mp4j.exception.Mp4jException;
 import com.fenbi.ytklearn.data.Constants;
+import com.fenbi.ytklearn.exception.YtkLearnException;
 import com.fenbi.ytklearn.loss.ILossFunction;
 import com.fenbi.ytklearn.utils.CheckUtils;
 import lombok.Data;
@@ -226,9 +227,21 @@ public class GBDTCoreData extends CoreData {
 
         } else { // multiclass softmax
             String[] linfo = info[1].split(coreParams.y_delim);
-            CheckUtils.check(linfo.length == numTreeInGroup, "[GBDT] label num must equal %d, line: %s", numTreeInGroup, line);
-            for (int i = 0; i < numTreeInGroup; i++) {
-                label[i] = Float.parseFloat(linfo[i]);
+            CheckUtils.check(linfo.length == numTreeInGroup || linfo.length == 1, "[GBDT] label num must equal %d, line: %s", numTreeInGroup, line);
+
+            if (linfo.length == 1) {
+                for (int i = 0; i < numTreeInGroup; i++) {
+                    label[i] = 0;
+                }
+                int clazz = Integer.parseInt(linfo[0]);
+                if (clazz >= numTreeInGroup) {
+                    throw new YtkLearnException("multi classification label must in range [0,K-1]!\n" + line);
+                }
+                label[clazz] = 1.0f;
+            } else {
+                for (int i = 0; i < numTreeInGroup; i++) {
+                    label[i] = Float.parseFloat(linfo[i]);
+                }
             }
 
             CheckUtils.check(obj.checkLabel(label), "[GBDT] all label sum must equal 1.0, line: %s", line);
