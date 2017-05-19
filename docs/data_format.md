@@ -163,7 +163,7 @@ y_delim=","
 features_delim=","
 feature_name_val_delim=":"
 
-# local filesystem : "file:///",
+# local filesystem : "local", "file:///",
 # hdfs filesystem : "hdfs://host"
 fs_scheme="???"
 libsvm_data_path="???"
