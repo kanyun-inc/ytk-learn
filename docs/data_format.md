@@ -16,7 +16,7 @@ Ytk-learn supports weighted trainning and sample weight scaling, so each line is
   - multiclass cross_entropy: length of labels is equal to class number, sum of labels equals to 1, e.g. 0.2,0.1,0.4,0.3 (4 class in total)
 
 
-- **Features** stands for ```f1_name${feature_name_val_delim}f1_value${features_delim}...${features_delim}fn_name${feature_name_val_delim}fn_value```. Features are split by ${features_delim} while feature key and value are split by ``${features_delim}``.
+- **Features** stands for ```f1_name${feature_name_val_delim}f1_value${features_delim}...${features_delim}fn_name${feature_name_val_delim}fn_value```. Features are split by ${features_delim} while feature key and value are split by ``${feature_name_val_delim}``.
 - **Init_prediction**  is optional, and only is enabled in tree-based models(e.g. GBDT, GBMLR, GBSDT,...). You can provide each sample with an initial prediction(regression and binary classification) or initial scores(multi-class classification, scores are the origin predict score before softmax). When you provide this field, set 'sample_dependent_base_prediction' in model configuration file to true. 
 
 For example, if you config  ``data.delim`` with 
