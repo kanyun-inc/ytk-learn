@@ -152,7 +152,7 @@ In default, ```bin/transform.py``` is not used, and you can set ```transform="tr
 
 ### **Data Format Transform Tool** ###
 
-Ytklearn provides the script[libsvm_convert_2_ytklearn.sh](../bin/libsvm_convert_2_ytklearn.sh) ([win_libsvm_convert_2_ytklearn.sh](../bin/win_libsvm_convert_2_ytklearn.sh) for windows) to transform data format from libsvm to ytklearn. It will **generate a new dataset file** of ytklearn format and the weight of each sample is one.
+Ytklearn provides the script[libsvm_convert_2_ytklearn.sh](../bin/libsvm_convert_2_ytklearn.sh) ([win_libsvm_convert_2_ytklearn.bat](../bin/win_libsvm_convert_2_ytklearn.bat) for windows) to transform data format from libsvm to ytklearn. It will **generate a new dataset file** of ytklearn format and the weight of each sample is one.
 
 | Task                                     | Desc                                     | Example                     | Original Format                          | Converted Format                         |
 | ---------------------------------------- | ---------------------------------------- | --------------------------- | ---------------------------------------- | ---------------------------------------- |
