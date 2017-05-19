@@ -67,7 +67,7 @@ data {
     #   regression : weight###label###f1name:f1value,f2name:f2value,...(###init_prediction)
     #   binary classification : weight###label(0 or 1)###f1name:f1value,f2name:f2value,...(###init_prediction)
     #   binary cross_entropy : weight###label(0~1, positive)###f1name:f1value,f2name:f2value,...(###init_prediction)
-    #   multi-class classficication : weight###0,0,1,0(total 4 class, only one is 1, others is 0, this belongs to 3'rd class)###f1name:f1value,f2name:f2value,...(###init_prediction)
+    #   multi classficication : weight###2(this belongs to 3'rd class, label must be in range [0,K-1], K is class number)###f1name:f1value,f2name:f2value,...
     #   multi cross_entropy : weight###0.2,0.1,0.4,0.3(total 4 class, sum must be equal 1.0)###f1name:f1value,f2name:f2value,...(###init_prediction)
     # (###init_prediction) is optional. If you provide initial prediction(s) for each sample, set optimization.sample_dependent_base_prediction to true
     delim {

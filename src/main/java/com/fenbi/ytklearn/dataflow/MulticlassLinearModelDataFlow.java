@@ -23,6 +23,7 @@
 
 package com.fenbi.ytklearn.dataflow;
 
+import com.fenbi.ytklearn.exception.YtkLearnException;
 import com.fenbi.ytklearn.feature.FeatureHash;
 import com.fenbi.ytklearn.fs.IFileSystem;
 import com.fenbi.mp4j.exception.Mp4jException;
@@ -103,12 +104,25 @@ public class MulticlassLinearModelDataFlow extends ContinuousDataFlow {
         protected boolean yExtract(String line, String[] info) throws Exception {
             String []linfo = info[1].split(coreParams.y_delim);
 
-            if (linfo.length != K) {
-                throw new Exception("label num must equal:" + K + ", line:" + line);
+            if (linfo.length != K && linfo.length != 1) {
+                throw new Exception("label num must = " + K + ", or = 1, line:" + line);
             }
-            for (int i = 0; i < K; i++) {
-                label[i] = Float.parseFloat(linfo[i]);
+
+            if (linfo.length == 1) {
+                for (int i = 0; i < K; i++) {
+                    label[i] = 0;
+                }
+                int clazz = Integer.parseInt(linfo[0]);
+                if (clazz >= K) {
+                    throw new YtkLearnException("multi classification label must in range [0,K-1]!\n" + line);
+                }
+                label[clazz] = 1.0f;
+            } else {
+                for (int i = 0; i < K; i++) {
+                    label[i] = Float.parseFloat(linfo[i]);
+                }
             }
+
 
             if (coreParams.needYStat) {
                 labelIdx = -1;
@@ -125,7 +139,7 @@ public class MulticlassLinearModelDataFlow extends ContinuousDataFlow {
 
 
             if (labelIdx == -1) {
-                throw new Exception("label error! line:" + line);
+                throw new Exception("label error for y sampling! line:" + line);
             }
             float rate = coreParams.ySampling[labelIdx];
             if (rate <= 1.0f) {

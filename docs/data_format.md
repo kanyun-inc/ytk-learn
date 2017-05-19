@@ -12,7 +12,7 @@ Ytk-learn supports weighted trainning and sample weight scaling, so each line is
   - regression:  real number, e.g. 122.23
   - binary classification: 0 or 1
   - binary cross_entropy: real number, belongs to [0, 1], e.g. 0.245
-  - multiclass classficication: one-hot coding,  length of labels is equal to class number, e.g. 0, 0, 1, 0 means that target is class2 in 4 classes(class_0, class_1, class_2, class_3)
+  - multiclass classficication: integer number from 0 to K-1, K is class number.
   - multiclass cross_entropy: length of labels is equal to class number, sum of labels equals to 1, e.g. 0.2,0.1,0.4,0.3 (4 class in total)
 
 
@@ -52,7 +52,11 @@ then the data format becomes
    1###0###height:2.0,weight:50.0,size:80
    ```
 
-   There are two samples, the first '10' in the first line is the sample weight, the '1' in ``10###1###``is the sample label. Similarly, the second sample has weight '1' and label '0'. In binary classification, label '1' stands for positive sample while '0' stands for negative sample. You can also provide probability values in [0,1] as label, indicating the probability that the sample is positive, e.g.
+   There are two samples, the first '10' in the first line is the sample weight, the '1' in ``10###1###``is the sample label. Similarly, the second sample has weight '1' and label '0'. In binary classification, label '1' stands for positive sample while '0' stands for negative sample. 
+
+- **binary cross-entropy**
+
+   You can also provide probability values in [0,1] as label, indicating the probability that the sample is positive, e.g.
 
    ```
    10###0.9###height:1.6,weight:56.0,size:102
@@ -68,10 +72,14 @@ then the data format becomes
 - **multi-class classification**
 
    ```
-   1###0,0,0,1,0,0###height:1.6,weight:56.0,size:102
+   1###3###height:1.6,weight:56.0,size:102
    ```
 
-   The first '1' is the sample weight, '0,0,0,1,0,0' is the sample label which means target is the fourth class of the six classes. Ytklearn also supports probability values in [0,1] as label, to indicate the probability that the sample belongs to this class, e.g.
+   label is 3 means target is the fourth class of the six classes. 
+
+- **multi cross-entropy**
+
+   Ytk-learn also supports probability values in [0,1] as label, to indicate the probability that the sample belongs to this class, e.g.
 
    ```
    1###0.01,0.02,0.01,0.75,0.01,0.2###height:1.6,weight:56.0,size:102
