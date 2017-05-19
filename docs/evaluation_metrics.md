@@ -17,7 +17,7 @@ You can perform evaluation in train phase by setting ``eval_metric`` in the conf
 
 The offline batch prediction will save prediction results for each sample in file meanwhile performing evaluation. Evaluation is optional.
 
-#### **Testing data format**####
+#### **Testing data format** ####
 
 Testing data format is almost the same as [training data](data_format.md) except that you can also provide data without labels for offline batch prediction. e.g:
 
@@ -66,7 +66,7 @@ If you provide labels,  you can set ``eval_metric`` to perform evaluations. Ytk-
 
  You can see the details in ``log/info.log``, including evaluations and a file path of prediction results.
 
-The following script is predict.sh.
+The following script is [predict.sh](../bin/predict.sh).
 
 ```shell
 #!/usr/bin/env bash
