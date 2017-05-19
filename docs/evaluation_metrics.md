@@ -66,7 +66,7 @@ If you provide labels,  you can set ``eval_metric`` to perform evaluations. Ytk-
 
  You can see the details in ``log/info.log``, including evaluations and a file path of prediction results.
 
-The following script is [predict.sh](../bin/predict.sh) ([win_predict.sh](../bin/win_predict.sh) for windows).
+The following script is [predict.sh](../bin/predict.sh) ([win_predict.bat](../bin/win_predict.bat) for windows).
 
 ```shell
 #!/usr/bin/env bash
