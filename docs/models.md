@@ -26,6 +26,7 @@
   - inv_mape(inv mean absolute percentage error)
 
 The abbreviations of objective function listed above can be set via ```loss_function``` in model configuration.
+
 Using [GitHub with MathJax](https://chrome.google.com/webstore/detail/github-with-mathjax/ioemnmodlmafdkllaclgeombjnmnbima/related) to render Latex.
 ### Models(score function)
 
