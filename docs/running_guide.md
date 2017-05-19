@@ -35,6 +35,8 @@ Ytk-learn uses master-slave communication mode based on ytk-mp4j. Master node is
 
 The properties of thread number, master host, master port, slave hosts, model name, configuration path, data transformation and runing commands can be set in these scripts. 
 
+Double click the [win_local_optimizer.bat](../bin/win_local_optimizer.bat) to start training on windows.
+
 ### Storage Sytem
 
 - local disk
