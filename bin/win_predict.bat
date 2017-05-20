@@ -23,6 +23,7 @@ set eval_metric="auc,mae"
 @Rem value or leafid
 set predict_type=value
 
+cd ..
 @start /b cmd /c java -Xmx1000m -XX:-OmitStackTraceInFastThrow -cp lib/* -Dlog4j.configuration=file:config/log4j.properties com.fenbi.ytklearn.predictor.Predicts %config_path% %model_name% %file_name% %transform% %transform_script_path% %resultSaveMode% %resultFileSuffix% %max_error_tol% %eval_metric% %predict_type%
 
 pause

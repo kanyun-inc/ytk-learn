@@ -49,7 +49,10 @@ public class LocalFileSystem implements IFileSystem{
 
     @Override
     public Writer getWriter(String path) throws IOException {
-        mkdirs(new File(path).getParentFile().getAbsolutePath());
+        File parentFile = new File(path).getParentFile();
+        if (parentFile != null) {
+            mkdirs(parentFile.getAbsolutePath());
+        }
         return new PrintWriter(path);
     }
 
