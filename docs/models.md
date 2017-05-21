@@ -156,11 +156,6 @@ Different gating functions combined with different basis score functions can cre
 
 GBST can also be applied to regression and classification tasks with different active functions and loss functions.
 
-Reference:
-
-1. Friedman, Jerome H. "Greedy function approximation: a gradient boosting machine." *Annals of statistics* (2001): 1189-1232.
-2. Jordan, Michael I., and Robert A. Jacobs. "Hierarchical mixtures of experts and the EM algorithm." *Neural computation* 6.2 (1994): 181-214.
-
 ### Limits
 
 Different models can be used with specified objective functions.
@@ -176,3 +171,10 @@ Different models can be used with specified objective functions.
 | gbsdt             | Binary Classification/Regression         |
 | gbhmlr            | Binary Classification/Regression         |
 | gbhsdt            | Binary Classification/Regression         |
+
+Reference:
+
+1. Friedman, Jerome H. "Greedy function approximation: a gradient boosting machine." *Annals of statistics* (2001): 1189-1232.
+2. Jordan, Michael I., and Robert A. Jacobs. "Hierarchical mixtures of experts and the EM algorithm." *Neural computation* 6.2 (1994): 181-214.
+
+
