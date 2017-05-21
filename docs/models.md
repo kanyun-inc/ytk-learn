@@ -27,6 +27,12 @@
 
 The abbreviations of objective function listed above can be set via ```loss_function``` in model configuration.
 
+#### How to define new Objective Function
+If you want to define a new Objective function, there are three steps to accomplish:
+1. Implements ILossFunction interface
+2. Accomplish functions in LossFunctions class
+3. Execute ```sh tool/package.sh``` to repackage.
+
 Using [GitHub with MathJax](https://chrome.google.com/webstore/detail/github-with-mathjax/ioemnmodlmafdkllaclgeombjnmnbima/related) to render Latex.
 ### Models(score function)
 
