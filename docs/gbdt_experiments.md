@@ -92,7 +92,7 @@ In our GBDT, the results of each training may be different because of the unstab
 |         | XGBoost                      | LightGBM                     | GBDT in ytk-learn                        |
 | ------- | ---------------------------- | ---------------------------- | ---------------------------------------- |
 | logloss | train:0.473704,test:0.482996 | train:0.473409,test:0.482948 | (1)train: 0.472630, test: 0.482095<br>(2)train:0.473604, test:0.483073<br>(3)train:0.473141, test:0.482539 |
-| auc     | 0.845605                     | 0.845612                     | (1) 0.846235<br>(2) 0.845539<br>(3) 0.845923 |
+| auc     | 0.845605                     | 0.845612                     | (1) 0.846235<br>(2) 0.845539<br>(3) 0.845923 |
 
 2. **Speed**
 
