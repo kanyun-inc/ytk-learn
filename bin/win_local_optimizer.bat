@@ -22,9 +22,9 @@ set transform_script_path=bin/transform.py
 
 cd ..
 @Rem start ytk-mp4j master, default max memory is 512m
-@start /b cmd /c java -Xmx512m -cp lib/* -Dlog4j.configuration=file:config/log4j_master.properties com.fenbi.mp4j.comm.CommMaster 1 %master_port%
+@start /b cmd /c java -Xmx512m -cp lib/* -Dlog4j.configuration=file:config/log4j_master_win.properties com.fenbi.mp4j.comm.CommMaster 1 %master_port%
 
 @Rem start windows train local worker, default max memory is 1000m
-@start /b cmd /c java -Xmx1000m -XX:-OmitStackTraceInFastThrow -cp lib/* -Dlog4j.configuration=file:config/log4j_slave.properties com.fenbi.ytklearn.worker.LocalTrainWorker  %model_name% %properties_path% %transform_script_path% %transform% user %master_host% %master_port% %thread_num%
+@start /b cmd /c java -Xmx1000m -XX:-OmitStackTraceInFastThrow -cp lib/* -Dlog4j.configuration=file:config/log4j_slave_win.properties com.fenbi.ytklearn.worker.LocalTrainWorker  %model_name% %properties_path% %transform_script_path% %transform% user %master_host% %master_port% %thread_num%
 
 pause
