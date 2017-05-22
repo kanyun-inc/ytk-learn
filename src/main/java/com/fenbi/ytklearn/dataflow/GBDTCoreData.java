@@ -227,7 +227,7 @@ public class GBDTCoreData extends CoreData {
 
         } else { // multiclass softmax
             String[] linfo = info[1].split(coreParams.y_delim);
-            CheckUtils.check(linfo.length == numTreeInGroup || linfo.length == 1, "[GBDT] label num must equal %d, line: %s", numTreeInGroup, line);
+            CheckUtils.check(linfo.length == numTreeInGroup || linfo.length == 1, "[GBDT] label num must equal %d or 1, line: %s", numTreeInGroup, line);
 
             if (linfo.length == 1) {
                 for (int i = 0; i < numTreeInGroup; i++) {

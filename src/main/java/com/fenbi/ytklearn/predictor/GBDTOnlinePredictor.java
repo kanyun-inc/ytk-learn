@@ -382,7 +382,11 @@ public class GBDTOnlinePredictor extends OnlinePredictor implements ITreePredict
                                 labels = new double[numTreeInGroup];
                             }
 
-                            if (numTreeInGroup > 1) {
+                            if (numTreeInGroup == 1) {
+                                labels[0] = Float.parseFloat(linfo[0]);
+                                loss += weight * loss(fmap, labels[0], sampleDepBasePrediction? otherinfo[0]: null);
+
+                            } else {
                                 if (linfo.length == 1) {
                                     for (int i = 0; i < numTreeInGroup; i++) {
                                         labels[i] = 0;
@@ -399,11 +403,7 @@ public class GBDTOnlinePredictor extends OnlinePredictor implements ITreePredict
                                 } else {
                                     throw new YtkLearnException("label format error:" + line);
                                 }
-
                                 loss += weight * loss(fmap, labels, otherinfo);
-                            } else {
-                                labels[0] = Float.parseFloat(linfo[0]);
-                                loss += weight * loss(fmap, labels[0], sampleDepBasePrediction? otherinfo[0]: null);
                             }
 
                             if (needEval) {
