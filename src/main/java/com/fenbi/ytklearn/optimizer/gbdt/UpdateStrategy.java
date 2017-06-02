@@ -1,25 +1,25 @@
 /**
-*
-* Copyright (c) 2017 ytk-learn https://github.com/yuantiku
-*
-* Permission is hereby granted, free of charge, to any person obtaining a copy
-* of this software and associated documentation files (the "Software"), to deal
-* in the Software without restriction, including without limitation the rights
-* to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-* copies of the Software, and to permit persons to whom the Software is
-* furnished to do so, subject to the following conditions:
+ *
+ * Copyright (c) 2017 ytk-learn https://github.com/yuantiku
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
 
-* The above copyright notice and this permission notice shall be included in all
-* copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
 
-* THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-* IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-* FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-* AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-* LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-* OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-* SOFTWARE.
-*/
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
 
 package com.fenbi.ytklearn.optimizer.gbdt;
 
@@ -35,12 +35,14 @@ public class UpdateStrategy {
 
     private final double minChildWeight;
     private final long minSplitSamples;
+    private final double maxAbsLeafVal;
     private final double regL1;
     private final double regL2;
 
     public UpdateStrategy(GBDTOptimizationParams params) {
         minChildWeight = params.min_child_hessian_sum;
         minSplitSamples = params.min_split_samples;
+        maxAbsLeafVal = params.max_abs_leaf_val;
         regL1 = params.regularization.l1;
         regL2 = params.regularization.l2;
     }
@@ -55,7 +57,7 @@ public class UpdateStrategy {
     }
 
     public double calcNodeValue(GradStats stats) {
-        return calcWeight(stats.getSumGrad(), stats.getSumHess());
+        return calcNodeValue(stats.getSumGrad(), stats.getSumHess());
     }
 
     // calculate the cost of loss function
@@ -63,25 +65,41 @@ public class UpdateStrategy {
         if (sumHess < minChildWeight)
             return 0.0;
         double gain;
-        if (regL1 == 0.0f) {
-             gain = Math.pow(sumGrad, 2) / (sumHess + regL2);
+        // no limit on leaf value
+        if (maxAbsLeafVal <= 0) {
+            System.out.println("max abs leaf val <=0, no limit:" + maxAbsLeafVal);
+            if (regL1 == 0.0f) {
+                gain = Math.pow(sumGrad, 2) / (sumHess + regL2);
+            } else {
+                gain = Math.pow(thresholdL1(sumGrad, regL1), 2) / (sumHess + regL2);
+            }
         } else {
-             gain = Math.pow(thresholdL1(sumGrad, regL1), 2) / (sumHess + regL2);
+            System.out.println("max abs leaf val >0, limit" + maxAbsLeafVal);
+
+            double leafVal = calcNodeValue(sumGrad, sumHess);
+            gain = -2 * (sumGrad * leafVal + (0.5 * sumHess + regL2) * Math.pow(leafVal, 2) + regL1 * Math.abs(leafVal));
         }
         return gain;
     }
 
     // calculate weight given the statistics, weight: leaf node predction
-    private double calcWeight(double sumGrad, double sumHess) {
+    private double calcNodeValue(double sumGrad, double sumHess) {
         if (sumHess < minChildWeight)
             return 0.0;
-        double dw;
+        double val;
         if (regL1 == 0.0f) {
-            dw = -sumGrad / (sumHess + regL2);
+            val = -sumGrad / (sumHess + regL2);
         } else {
-            dw = -thresholdL1(sumGrad, regL1) / (sumHess + regL2);
+            val = -thresholdL1(sumGrad, regL1) / (sumHess + regL2);
         }
-        return dw;
+        if (maxAbsLeafVal > 0) {
+            if (val > maxAbsLeafVal) {
+                val = maxAbsLeafVal;
+            } else if (val < -maxAbsLeafVal) {
+                val = -maxAbsLeafVal;
+            }
+        }
+        return val;
     }
 
     // functions for L1 cost, w is gradient， IF w < 0, then weight >0

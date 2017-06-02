@@ -57,6 +57,9 @@ public class GBDTOptimizationParams implements Serializable {
 
     public String objective;
     public double sigmoid_zmax;
+    //max abs leaf value before multiplies learning rate
+    public double max_abs_leaf_val;
+
     // whether to use quantile approximate for lad tree refine
     public boolean lad_refine_appr;
     public TreeGrowPolicy tree_grow_policy;
@@ -112,6 +115,12 @@ public class GBDTOptimizationParams implements Serializable {
         } catch (ConfigException.Missing e) {
             min_split_samples = -1;
         }
+        try {
+            max_abs_leaf_val = config.getDouble(prefix + KEY + "max_abs_leaf_val");
+        } catch (ConfigException.Missing e) {
+            max_abs_leaf_val = 0;
+        }
+
         regularization = new Regularization(config, prefix + KEY);
 
         //default value
