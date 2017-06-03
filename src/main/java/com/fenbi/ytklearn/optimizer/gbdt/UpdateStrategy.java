@@ -67,17 +67,14 @@ public class UpdateStrategy {
         double gain;
         // no limit on leaf value
         if (maxAbsLeafVal <= 0) {
-            System.out.println("max abs leaf val <=0, no limit:" + maxAbsLeafVal);
             if (regL1 == 0.0f) {
                 gain = Math.pow(sumGrad, 2) / (sumHess + regL2);
             } else {
                 gain = Math.pow(thresholdL1(sumGrad, regL1), 2) / (sumHess + regL2);
             }
         } else {
-            System.out.println("max abs leaf val >0, limit" + maxAbsLeafVal);
-
             double leafVal = calcNodeValue(sumGrad, sumHess);
-            gain = -2 * (sumGrad * leafVal + (0.5 * sumHess + regL2) * Math.pow(leafVal, 2) + regL1 * Math.abs(leafVal));
+            gain = -2 * (sumGrad * leafVal + 0.5 * (sumHess + regL2) * Math.pow(leafVal, 2) + regL1 * Math.abs(leafVal));
         }
         return gain;
     }
