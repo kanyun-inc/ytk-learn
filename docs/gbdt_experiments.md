@@ -153,7 +153,7 @@ The Configuration is almost the same ecept the thread number, bin count and
 | 8                  | 185.03s                    | 71.51s                         |
 | 9                  | 196.55s                    | 454.87s                        |
 
-2.Configuration: bin count: 5000, tree number:20, thread number:4. We use larger bin count mainly to compare the change of communicgation time.
+2. Configuration: bin count: 5000, tree number:20, thread number:4. We use larger bin count mainly to compare the change of communicgation time.
 
 | Number of Machines | Building Tree cost in GBDT | Building Tree cost in LightGBM |
 | ------------------ | -------------------------- | ------------------------------ |
