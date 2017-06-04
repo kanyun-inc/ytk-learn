@@ -141,22 +141,25 @@ optimization {
     # max memory(MB) allocated for histograms, < 0 means no limit, enabled when tree_maker is "data"
     histogram_pool_capacity: -1,
 
-    # number of boosting round
+    # number of boosting round, should >= 1
     round_num: 50,
   
-    # maximum depth of a tree, e.g. the depth of a tree with only a root is 0
+    # maximum depth of a tree, < 0 means no limit, e.g. the depth of a tree with only a root is 0
     max_depth: 7,
   
     # minimum hessian sum in a leaf
-    min_child_hessian_sum: 10,
+    min_child_hessian_sum: 1,
+    
+    # maximum absolute value(before multiplies learning rate) in a leaf, <= 0 means no limit
+    max_abs_leaf_val: 0,
   
-    # maximum leaf count in a tree, -1 means no limit
+    # maximum leaf count in a tree, < 0 means no limit
     max_leaf_cnt: 128,
   
-    # minimum loss reduction to make a split, -1 means no limit
+    # minimum loss reduction to make a split, should >= 0
     min_split_loss: 0,
   
-    # minimum number of samples to make a split 
+    # minimum number of samples to make a split, should >=2 or < 0, <0 means no limit
     min_split_samples: 2000,
 
     # loss function: sigmoid, l1, l2, softmax, poisson
