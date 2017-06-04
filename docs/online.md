@@ -106,7 +106,7 @@ public static OnlinePredictor createOnlinePredictor(String modelName, Reader con
 <dependency>
   <groupId>com.fenbi</groupId>
   <artifactId>ytk-learn</artifactId>
-  <version>0.0.1</version>
+  <version>0.0.2</version>
 </dependency>
 ```
 
