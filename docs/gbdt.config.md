@@ -151,7 +151,7 @@ optimization {
     min_child_hessian_sum: 1,
     
     # maximum absolute value(before multiplies learning rate) in a leaf, <= 0 means no limit
-    max_abs_leaf_val: 0,
+    max_abs_leaf_val: -1,
   
     # maximum leaf count in a tree, < 0 means no limit
     max_leaf_cnt: 128,
