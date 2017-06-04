@@ -21,6 +21,10 @@ For more details, refer to [features](docs/features.md)
 - [Performance Guide](docs/performance_guide.md)
 - [Online Prediction Guide](docs/online.md)
 
+### Experiments
+
+We compare our GBDT with [XGBoost](https://github.com/dmlc/xgboost) and [LightGBM](https://github.com/Microsoft/LightGBM), see [gbdt experiments](docs/gbdt_experiments.md) for more details.
+
 ### Environment Requirements
 
 To run or develop ytk-learn，just install [JRE 8](http://www.oracle.com/technetwork/java/javase/downloads/jre8-downloads-2133155.html) or [JDK 8](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html) and set [JAVA_HOME](https://docs.oracle.com/cd/E19182-01/820-7851/inst_cli_jdk_javahome_t/).
