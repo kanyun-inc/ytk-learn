@@ -118,7 +118,7 @@ public class GBDTOptimizationParams implements Serializable {
         try {
             max_abs_leaf_val = config.getDouble(prefix + KEY + "max_abs_leaf_val");
         } catch (ConfigException.Missing e) {
-            max_abs_leaf_val = 0;
+            max_abs_leaf_val = -1;
         }
 
         regularization = new Regularization(config, prefix + KEY);
