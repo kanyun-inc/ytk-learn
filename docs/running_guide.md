@@ -71,7 +71,7 @@ The [configurations](../config/model) for our models mainly consist of four part
 
 Logs in ytk-learn are very useful. You can monitor task procedure, see importance information such as evaluation results and find detailed error information when the program is not running as you expected.
 
-After starting up training,  you can use ```tail -f log/master.log``` to watch process,  most errors and exceptions are printed in this log file. If training is blocked or nothing about error or exception can be found in master.log,  you need to check slave.log or slave_error.log. In the spark/hadoop yarn, you can use ``` yarn logs -applicationId your_application_id``` command to get slave's logs.
+After starting up training,  you can use ```tail -f log/master.log``` to watch process,  most errors and exceptions are printed in this log file. If training is blocked or nothing about error or exception can be found in ```master.log```,  you must to check ```slave.log``` or ```slave_error.log```, if there is a ```ConnectionException```, you can try to set ```master_host``` to be ```127.0.0.1```. In the spark/hadoop yarn, you can use ``` yarn logs -applicationId your_application_id``` command to get slave's logs.
 
 | log file                      | details                                  | relevant scripts                         |
 | :---------------------------- | :--------------------------------------- | :--------------------------------------- |

@@ -3,7 +3,8 @@
 # thread number
 thread_num=1
 
-# use current machine as master
+# use current machine as master, if an ConnectException occurs in slave.log，
+# try to set master_host=127.0.0.1
 master_host=$(hostname)
 
 # if you run more than one training tasks on the same host at the same time,

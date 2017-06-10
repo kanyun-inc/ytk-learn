@@ -223,7 +223,9 @@ public class TrainWorker implements Serializable {
             }
         } finally {
             try {
-                comm.close(errorCode);
+                if (comm != null) {
+                    comm.close(errorCode);
+                }
             } catch (Mp4jException e) {
                 errorCode = 1;
                 LOG.error("comm close exception!", e);
