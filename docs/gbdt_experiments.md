@@ -6,7 +6,7 @@ We compare our GBDT with [XGBoost](https://github.com/dmlc/xgboost) (commit [e38
 
 #### Data
 
-Experiments are conducted on [Higgs](https://archive.ics.uci.edu/ml/datasets/HIGGS). The task is of binary classfication. The size of train set is 10,500,000 and the number of features is 28, and we use the last 500,000 samples as test set.
+Experiments are conducted on [Higgs](https://archive.ics.uci.edu/ml/datasets/HIGGS). The task is of binary classification. The size of train set is 10,500,000 and the number of features is 28, and we use the last 500,000 samples as test set.
 
 #### Environment
 
