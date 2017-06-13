@@ -62,7 +62,7 @@ data {
 
     # whether your train/test data is assigned. See "Train/Test Data Splitting Manner" in running_guide.md for more details on train/test data assignment method
     assigned : false,
-   # if your train/test data is not assigned, we provide the following two ways for slaves to read files: 
+    # if your train/test data is not assigned, we provide the following two ways for slaves to read files:
     # lines_avg : different slaves read different lines of same file alternative. If you have a few train/test files and more than one slave, we recommend this manner
     # files_avg : different slaves read different files, if your files outnumber slaves, and the number of samples in each file is similar, we recommend this manner
     unassigned_mode : "lines_avg" // "files_avg"
@@ -87,6 +87,8 @@ feature {
 
     # preprocessing feature value
     # many learning algorithm(e.g. l1, l2 regularization) assume that features are centered around zero and have variance in the same order
+    # if you use feature transform, a file record statistical information while locates at "model.data_path" + "_feature_transform_stat" and
+    # will be used in offline or online prediction.
     transform {
         # feature value
         switch_on : false,

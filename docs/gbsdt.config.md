@@ -88,6 +88,8 @@ feature {
 
     # preprocessing feature value
     # many learning algorithm(e.g. l1, l2 regularization) assume that features are centered around zero and have variance in the same order
+    # if you use feature transform, a file record statistical information while locates at "model.data_path" + "_feature_transform_stat" and
+    # will be used in offline or online prediction.
     transform {
         # feature value
         switch_on : false,
