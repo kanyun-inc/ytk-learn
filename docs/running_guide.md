@@ -20,8 +20,8 @@ sh tool/package.sh
 
 - single machine
 - commom cluster
-- spark cluster
-- hadoop cluster
+- spark cluster(Yarn)
+- hadoop cluster(Yarn)
 - easily extended to other computation platforms
 
 |                | Linux                                    | Mac OS                                   | Windows(cygwin)                          |
