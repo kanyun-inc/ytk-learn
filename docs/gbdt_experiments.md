@@ -141,7 +141,7 @@ The Configuration is almost the same ecept the thread number, bin count and
 1. Configuration: bin count: 255, tree number: 50, thread number: 4
 
 
-| Number of Machines | Building Tree cost in GBDT | Building Tree cost in LightGBM |
+| Number of Machines | Building Tree cost in ytk-learn | Building Tree cost in LightGBM |
 | ------------------ | -------------------------- | ------------------------------ |
 | 1                  | 196.34s                    | 121.84s                        |
 | 2                  | 140.93s                    | 105.02s                        |
@@ -155,7 +155,7 @@ The Configuration is almost the same ecept the thread number, bin count and
 
 2. Configuration: bin count: 5000, tree number:20, thread number:4. We use larger bin count mainly to compare the change of communicgation time.
 
-| Number of Machines | Building Tree cost in GBDT | Building Tree cost in LightGBM |
+| Number of Machines | Building Tree cost in ytk-learn | Building Tree cost in LightGBM |
 | ------------------ | -------------------------- | ------------------------------ |
 | 1                  | 109.92s                    | 64.90s                         |
 | 2                  | 130.81s                    | 129.67s                        |
