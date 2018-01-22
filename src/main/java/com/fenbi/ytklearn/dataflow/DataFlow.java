@@ -127,8 +127,8 @@ public abstract class DataFlow {
     protected volatile boolean replacedIdx = false;
     protected Random rand = new Random();
 
-    private static final BlockingQueue<String> readQueues[];
-    private static volatile boolean readFinished = false;
+    private final BlockingQueue<String> readQueues[];
+    private volatile boolean readFinished = false;
 
     protected IFeatureMap featureMap;
 
@@ -139,14 +139,7 @@ public abstract class DataFlow {
 
     public static int MAX_THREAD_NUM = 2000;
 
-    static {
-        readQueues = new LinkedBlockingDeque[MAX_THREAD_NUM];
-        for (int t = 0; t < MAX_THREAD_NUM; t++) {
-            readQueues[t] = new LinkedBlockingDeque<>();
-        }
-    }
-
-    public static class ThreadIterator implements Iterator<String> {
+    public class ThreadIterator implements Iterator<String> {
         private final int threadId;
 
         public ThreadIterator(int threadId) {
@@ -199,6 +192,10 @@ public abstract class DataFlow {
 
         if (threadNum > MAX_THREAD_NUM) {
             throw new YtkLearnException("thread number=" + threadNum + " is too large! please reset!");
+        }
+        readQueues = new LinkedBlockingDeque[MAX_THREAD_NUM];
+        for (int t = 0; t < MAX_THREAD_NUM; t++) {
+            readQueues[t] = new LinkedBlockingDeque<>();
         }
     }
 
