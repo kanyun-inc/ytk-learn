@@ -43,7 +43,6 @@ import java.util.regex.Pattern;
  */
 
 public class Tree {
-    //todo: \\]
     public static String innerNodePatternStr = "(\\S+):\\[f_(\\S+)<=(\\S+)\\] yes=(\\S+),no=(\\S+),missing=(\\S+),gain=(\\S+),hess_sum=(\\S+),sample_cnt=(\\S+)";
     public static String leafPatternStr = "(\\S+):leaf=(\\S+),hess_sum=(\\S+),sample_cnt=(\\S+)";
 
@@ -407,27 +406,6 @@ public class Tree {
                 imp.v2 += stats.get(i).getLossChg();
             }
         }
-    }
-
-    public static void main(String[] args){
-        String nodeStr = "   1:[f_3<=27.0] yes=3,no=4,missing=3,gain=186403.17,hess_sum=143.0,sample_cnt=143";
-        Pattern innerNodePattern = Pattern.compile(Tree.innerNodePatternStr);
-        Pattern leafPattern = Pattern.compile(Tree.leafPatternStr);
-        Matcher m = innerNodePattern.matcher(nodeStr);
-        CheckUtils.check(m.find() == true, "[GBDT] parse model error, non-leaf line:" + nodeStr);
-        int nid = Integer.parseInt(m.group(1));
-        String splitFeatName =  m.group(2);
-        float splitFeatVal = Float.parseFloat(m.group(3));
-
-        int leftChild =  Integer.parseInt(m.group(4));
-        int rightChild =  Integer.parseInt(m.group(5));
-        boolean isDefaultLeft = Integer.parseInt(m.group(6)) == leftChild;
-        float gain = Float.parseFloat(m.group(7));
-        float hessSum = Float.parseFloat(m.group(8));
-        long sampleCnt = Long.parseLong(m.group(9));
-        System.out.println("nid=" + nid + ", splitFeat=" + splitFeatName);
-
-
     }
 
 }
