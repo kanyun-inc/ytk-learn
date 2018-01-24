@@ -6,7 +6,7 @@
 
     <artifactId>ytk-learn</artifactId>
     <groupId>com.fenbi</groupId>
-    <version>0.0.2</version>
+    <version>0.0.3</version>
 
     <name>ytk-learn</name>
     <description>Ytk-learn is a distributed machine learning library which implements most of popular machine learning algorithms</description>
