@@ -327,7 +327,6 @@ public abstract class ContinuousOnlinePredictor<T> extends OnlinePredictor {
                                 }
                             }
                             double predict = predict(fmap, otherinfo);
-
                             if (hasLabel) {
                                 label = Float.parseFloat(linfo[0]);
                                 loss += weight * loss(fmap, label, otherinfo); // score not predict?
@@ -388,10 +387,10 @@ public abstract class ContinuousOnlinePredictor<T> extends OnlinePredictor {
                                 ", local error total number:" + errorNum +
                                 ", max error tol:" + maxErrorTol +
                                 ", has read real lines:" + realcnt +
-                                ", weight lines:" + weightCnt);
+                                ", weight lines:" + weightCnt, e);
                         if (errorNum > maxErrorTol) {
                             LOG.error("[ERROR] error number:" + errorNum +
-                                    " > " + "max tol:" + maxErrorTol);
+                                    " > " + "max tol:" + maxErrorTol, e);
                             throw e;
                         }
                     }

@@ -43,7 +43,7 @@ public class FFMOnlinePredictor extends ContinuousOnlinePredictor<float[]> {
     private final Map<String, Integer> field2IndexMap = new HashMap<>();
     private int fieldSize;
 
-    private final ThreadLocal<double[]> assistbuffer = new ThreadLocal<>();
+    private final ThreadLocal<float[]> assistbuffer = new ThreadLocal<>();
     private final ThreadLocal<int[]> fieldbuffer = new ThreadLocal<>();
     private final ThreadLocal<float[]> valbuffer = new ThreadLocal<>();
 
@@ -55,9 +55,9 @@ public class FFMOnlinePredictor extends ContinuousOnlinePredictor<float[]> {
         List<Integer> klist = config.getIntList("k");
         K = klist.get(1);
 
-        fieldDelim = config.getString("field_delim");
+        fieldDelim = config.getString("data.delim.field_delim");
         fieldDictPath = config.getString("model.field_dict_path");
-        maxFeatureNum = config.getInt("max_line_feature_num");
+        maxFeatureNum = config.getInt("data.max_feature_dim") + 1;
 
         loadModel();
     }
@@ -68,9 +68,9 @@ public class FFMOnlinePredictor extends ContinuousOnlinePredictor<float[]> {
         List<Integer> klist = config.getIntList("k");
         K = klist.get(1);
 
-        fieldDelim = config.getString("field_delim");
+        fieldDelim = config.getString("data.delim.field_delim");
         fieldDictPath = config.getString("model.field_dict_path");
-        maxFeatureNum = config.getInt("max_line_feature_num");
+        maxFeatureNum = config.getInt("data.max_feature_dim") + 1;
 
         loadModel();
     }
@@ -104,24 +104,24 @@ public class FFMOnlinePredictor extends ContinuousOnlinePredictor<float[]> {
         }
 
         int cnt = 0;
-        iterators = fs.read(Arrays.asList(fieldDictPath));
+        iterators = fs.read(Arrays.asList(modelParams.data_path));
         for (Iterator<String> it : iterators) {
             while (it.hasNext()) {
                 String line = it.next();
                 if (line.trim().length() == 0) {
-                    LOG.error("invalid model line:" + line);
+                    LOG.error("invalid model line(length=0):" + line);
                     continue;
                 }
                 String []info = line.trim().split(modelParams.delim);
-                if (fieldSize != (info.length - 5) / K) {
-                    LOG.info("invalid model line:" + line);
-                    continue;
-                }
+//                if (fieldSize != (info.length - 5) / K) {
+//                    LOG.info("invalid model line:" + line);
+//                    continue;
+//                }
 
-                if (info.length < 2) {
-                    LOG.error("[invalid model line:" + line);
-                    continue;
-                }
+//                if (info.length < 2) {
+//                    LOG.error("[invalid model line:" + line);
+//                    continue;
+//                }
 
 
                 float []w = modelMap.get(info[0]);
@@ -156,9 +156,9 @@ public class FFMOnlinePredictor extends ContinuousOnlinePredictor<float[]> {
 
         int stride = fieldSize * K;
 
-        double []assist = assistbuffer.get();
+        float []assist = assistbuffer.get();
         if (assist == null) {
-            assist = new double[K * fieldSize * (maxFeatureNum + 1)];
+            assist = new float[K * fieldSize * (maxFeatureNum + 1)];
             assistbuffer.set(assist);
         }
 
@@ -183,7 +183,11 @@ public class FFMOnlinePredictor extends ContinuousOnlinePredictor<float[]> {
         for (Map.Entry<String, Float> feature : features.entrySet()) {
 
             // field idx
-            fieldIdxArr[cidx] = field2IndexMap.get(feature.getKey().split(fieldDelim)[0]);
+            Integer fieldIdx = field2IndexMap.get(feature.getKey().split(fieldDelim)[0]);
+            if (fieldIdx == null) {
+                continue;
+            }
+            fieldIdxArr[cidx] = fieldIdx;
 
             float val = transform(feature.getKey(), feature.getValue());
             // val

@@ -58,6 +58,7 @@ public class FFMModelDataFlow extends ContinuousDataFlow {
     private Map<String, Integer> field2IndexMap = new HashMap<>();
     private int fieldSize;
     private int maxFeatureNum = -1;
+    private int maxFeatureDim = 100;
 
     private RandomParams randomParams;
 
@@ -88,6 +89,7 @@ public class FFMModelDataFlow extends ContinuousDataFlow {
 
         fieldDelim = config.getString("data.delim.field_delim");
         fieldDictPath = config.getString("model.field_dict_path");
+        maxFeatureDim = config.getInt("data.max_feature_dim");
 
         randomParams = new RandomParams(config, "");
 
@@ -103,6 +105,7 @@ public class FFMModelDataFlow extends ContinuousDataFlow {
     @Data
     public static class FFMCoreData extends ContinuousCoreData {
         private int maxFeatureNum;
+        private int maxFeatureDim;
         private String fieldDelim;
         private Map<String, Integer> field2IndexMap;
 
@@ -320,7 +323,7 @@ public class FFMModelDataFlow extends ContinuousDataFlow {
     @Override
     protected void handleOtherTrainInfo() throws Mp4jException {
         this.maxFeatureNum = ((FFMCoreData)threadTrainCoreDatas[0]).getMaxFeatureNum();
-        LOG_UTILS.importantInfo("train line max feature num:" + maxFeatureNum);
+        LOG_UTILS.importantInfo("train line max feature num:" + maxFeatureNum + ", config max feature dim:" + maxFeatureDim);
     }
 
     @Override

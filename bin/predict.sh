@@ -24,6 +24,7 @@ resultFileSuffix="_"${model_name}"_"${resultSaveMode}
 
 # max error data format tolerate number
 max_error_tol=100
+# auc,mae,rmse,confusion_matrix
 eval_metric="auc,mae"
 #value or leafid
 predict_type="value"
