@@ -244,7 +244,12 @@ public class GBSDTOnlinePredictor extends GBMLROnlinePredictor {
             lfx += gk_1 * leaf[tree][vstart - 1];
             gating[tree * K + K - 1] = gk_1;
 
-            fx += learningRate * lfx;
+            if (tree < treeNum - 1) {
+                fx += learningRate * lfx;
+            } else {
+                fx += lfx;
+            }
+
             idx += stride;
 
         }

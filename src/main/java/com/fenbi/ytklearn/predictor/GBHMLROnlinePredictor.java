@@ -143,7 +143,12 @@ public class GBHMLROnlinePredictor extends GBMLROnlinePredictor {
                 int vidx = ((j + 1) << 1) - 1;
                 mu[idx + j] = mu[idx + vidx] + mu[idx + vidx + 1];
             }
-            fx += learningRate * mu[idx];
+            if (tree < treeNum - 1) {
+                fx += learningRate * mu[idx];
+            } else {
+                fx += mu[idx];
+            }
+
             idx += stride;
             idxg += K;
         }

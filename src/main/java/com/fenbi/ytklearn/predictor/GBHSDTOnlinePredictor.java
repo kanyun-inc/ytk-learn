@@ -148,7 +148,12 @@ public class GBHSDTOnlinePredictor extends GBSDTOnlinePredictor {
                 int vidx = ((j + 1) << 1) - 1;
                 mu[idxm + j] = mu[idxm + vidx] + mu[idxm + vidx + 1];
             }
-            fx += learningRate * mu[idxm];
+
+            if (tree < treeNum - 1) {
+                fx += learningRate * mu[idxm];
+            } else {
+                fx += mu[idxm];
+            }
 
             idx += K - 1;
             idxg += K;

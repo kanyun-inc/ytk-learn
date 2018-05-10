@@ -267,7 +267,12 @@ public class GBMLROnlinePredictor extends ContinuousOnlinePredictor<float[]> imp
             lfx += gk_1 * wx[idx + stride - 1];
             gating[tree * K + K - 1] = gk_1;
 
-            fx += learningRate * lfx;
+            if (tree < treeNum - 1) {
+                fx += learningRate * lfx;
+            } else {
+                fx += lfx;
+            }
+
 
             idx += stride;
         }
